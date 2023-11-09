@@ -52,7 +52,7 @@ printf "\n$BLUE====TEST $testnbr ====$YELLOW(repeated with signs)(Expected: Erro
 ../push_swap "92" "42" "67" "87" "+92" "727"
 testnbr=$(($testnbr + 1))
 
-printf "\n$BLUE====TEST $testnbr ====$YELLOW(use of signs)(Expected: OK/Nothing)\n$NC"
+printf "\n$BLUE====TEST $testnbr ====$YELLOW(use of signs)(Expected: NOTHING)\n$NC"
 ../push_swap "92" "42" "+67" "87" "-727" > /dev/null
 testnbr=$(($testnbr + 1))
 
@@ -106,7 +106,7 @@ fi
 	x=$(( $x + 1 ))
 done
 x=$(( $x - 1 ))
-printf "$NC\nGood tests (order): $ok/$x\nPerfect tests (movements): $perf/$x\n"
+printf "$PINK\n\nGood tests (order): $ok/$x\nPerfect tests (movements 5/5): $perf/$x\n"
 
 printf "$PURPLE\n_______5 NUMBERS_______$YELLOW(Expected MAX: 12, OK)\n" #============
 testnbr=1
@@ -140,7 +140,7 @@ fi
 	x=$(( $x + 1 ))
 done
 x=$(( $x - 1 ))
-printf "$NC\nGood tests (order): $ok/$x\nPerfect tests (movements): $perf/$x\n"
+printf "$PINK\n\nGood tests (order): $ok/$x\nPerfect tests (movements 5/5): $perf/$x\n"
 
 printf "$PURPLE\n_______100 NUMBERS_______$YELLOW(Max: 1500, Perfect: 700)\n" #=======================
 testnbr=1
@@ -179,7 +179,7 @@ do
 done
 
 x=$(( $x - 1 ))
-printf "$NC\nGood tests (order): $ok/$x\nPerfect tests (movements): $perf/$x\n"
+printf "$PINK\nGood tests (order): $ok/$x\nPerfect tests (movements 5/5): $perf/$x\n"
 
 printf "$PURPLE\n_______500 NUMBERS_______$YELLOW(Max: 11500, Perfect: 5500)\n" #=======================================================
 testnbr=1
@@ -189,7 +189,7 @@ movs=0
 res="OK"
 perf=0
 ok=0
-while [ $x -le 30 ]
+while [ $x -le 50 ]
 do
   	ARG=`seq -100 399 | sort -R | tr "\n" " "`;
 	printf "$BLUE==== TEST $testnbr =$NC"
@@ -218,7 +218,7 @@ do
 done
 
 x=$(( $x - 1 ))
-printf "$NC\nGood tests (order): $ok/$x\nPerfect tests(movement): $perf/$x\n"
+printf "$PINK\nGood tests (order): $ok/$x\nPerfect tests(movement 5/5): $perf/$x\n"
 
 printf "$NC\n🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲\n"
 printf "\n\t$GREEN 🌟========TESTS COMPLETED, GOOD LUCK!========🌟\n$NC"
