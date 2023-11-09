@@ -17,63 +17,63 @@ printf "\n🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳�
 res=0
 printf "$PURPLE\n_______ERROR HANDLING_______\n$NC" #=======================================================
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(empty string)(Expected: Error)\n$NC"
-./push_swap "3" "1" "" 2> test.txt
+../push_swap "3" "1" "" 2> test.txt
 testnbr=$(($testnbr + 1))
 
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(no input)(Expected: NOTHING)\n$NC"
-./push_swap
+../push_swap
 testnbr=$(($testnbr + 1))
 
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(spaces)(Expected: Error)\n$NC"
-./push_swap "     "
+../push_swap "     "
 testnbr=$(($testnbr + 1))
 
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(checking stderr)(Expected: NOTHING)\n$NC"
-./push_swap "" 2>/dev/null > out
+../push_swap "" 2>/dev/null > out
 testnbr=$(($testnbr + 1))
 
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(letters btwn numbers)(Expected: Error)\n$NC"
-./push_swap "3a3" "2345" "324j455" "78"
+../push_swap "3a3" "2345" "324j455" "78"
 testnbr=$(($testnbr + 1))
 
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(only 1 number)(Expected: NOTHING)\n$NC"
-./push_swap "92"
+../push_swap "92"
 testnbr=$(($testnbr + 1))
 
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(repeated numbers)(Expected: Error)\n$NC"
-./push_swap "92" "42" "67" "87" "92" "727"
+../push_swap "92" "42" "67" "87" "92" "727"
 testnbr=$(($testnbr + 1))
 
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(repeated with leading zeroes)(Expected: Error)\n$NC"
-./push_swap "92" "42" "67" "87" "00092" "727"
+../push_swap "92" "42" "67" "87" "00092" "727"
 testnbr=$(($testnbr + 1))
 
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(repeated with signs)(Expected: Error)\n$NC"
-./push_swap "92" "42" "67" "87" "+92" "727"
+../push_swap "92" "42" "67" "87" "+92" "727"
 testnbr=$(($testnbr + 1))
 
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(use of signs)(Expected: OK/Nothing)\n$NC"
-./push_swap "92" "42" "+67" "87" "-727" > /dev/null
+../push_swap "92" "42" "+67" "87" "-727" > /dev/null
 testnbr=$(($testnbr + 1))
 
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(double signs)(Expected: Error)\n$NC"
-./push_swap "92" "42" "+67" "--727"
+../push_swap "92" "42" "+67" "--727"
 testnbr=$(($testnbr + 1))
 
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(bigger than max int)(Expected: Error)\n$NC"
-./push_swap "21474836499" "54546" "3877"
+../push_swap "21474836499" "54546" "3877"
 testnbr=$(($testnbr + 1))
 
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(smaller than min int)(Expected: Error)\n$NC"
-./push_swap "-21474836499" "456" "6476"
+../push_swap "-21474836499" "456" "6476"
 testnbr=$(($testnbr + 1))
 
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(single string)(OPTIONAL)\n$NC"
-./push_swap "-214483 437 28817 487 92 456 6476" > /dev/null
+../push_swap "-214483 437 28817 487 92 456 6476" > /dev/null
 testnbr=$(($testnbr + 1))
 
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(already ordered)(Expected: NOTHING)\n$NC"
-./push_swap "1" "4" "66" "88"
+../push_swap "1" "4" "66" "88"
 
 printf "$PURPLE\n_______3 NUMBERS_______$YELLOW(Expected MAX: 3, OK)\n" #======================
 testnbr=1
@@ -86,8 +86,8 @@ while [ $x -le 20 ]
 do
 	ARG=`seq 1 3 | sort -R | tr "\n" " "`;
 	printf "$BLUE||$testnbr-$NC"
-	movs=$(./push_swap ${ARG} | wc -l | awk '{print $1}')
-	res=$(./push_swap ${ARG} | ./checker_Mac ${ARG})
+	movs=$(../push_swap ${ARG} | wc -l | awk '{print $1}')
+	res=$(../push_swap ${ARG} | ./checker_Mac ${ARG})
 if [ $movs -le 12 ]
 	then
 		printf "$GREEN $movs $NC"
@@ -120,8 +120,8 @@ while [ $x -le 40 ]
 do
 	ARG=`seq -4 0 | sort -R | tr "\n" " "`;
 	printf "$BLUE||$testnbr-$NC"
-	movs=$(./push_swap ${ARG} | wc -l | awk '{print $1}')
-	res=$(./push_swap ${ARG} | ./checker_Mac ${ARG})
+	movs=$(../push_swap ${ARG} | wc -l | awk '{print $1}')
+	res=$(../push_swap ${ARG} | ./checker_Mac ${ARG})
 if [ $movs -le 12 ]
 	then
 		printf "$GREEN $movs $NC"
@@ -154,8 +154,8 @@ while [ $x -le 50 ]
 do
 	ARG=`seq -50 49 | sort -R | tr "\n" " "`;
 	printf "$BLUE====TEST $testnbr ====\n$NC"
-	movs=$(./push_swap ${ARG} | wc -l)
-	res=$(./push_swap ${ARG} | ./checker_Mac ${ARG})
+	movs=$(../push_swap ${ARG} | wc -l)
+	res=$(../push_swap ${ARG} | ./checker_Mac ${ARG})
 	if [ $movs -le 700 ]
 		then
 			printf "$GREEN $movs $NC"
@@ -193,8 +193,8 @@ while [ $x -le 30 ]
 do
   	ARG=`seq -100 399 | sort -R | tr "\n" " "`;
 	printf "$BLUE====TEST $testnbr ====\n$NC"
-	movs=$(./push_swap ${ARG} | wc -l)
-	res=$(./push_swap ${ARG} | ./checker_Mac ${ARG})
+	movs=$(../push_swap ${ARG} | wc -l)
+	res=$(../push_swap ${ARG} | ./checker_Mac ${ARG})
 	if [ $movs -le 5500 ]
 		then
 			printf "$GREEN $movs $NC"
