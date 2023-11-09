@@ -11,13 +11,13 @@ testnbr=1
 printf "\n🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲\n"
 printf "$GREEN\n\t🌟=======ALCABALL PUSHSWAP TESTER========🌟\n$NC"
 printf "$PINK\nIf there's any issue or something to improve, pls tell me!! :)\n\
-	(I'm always at the campus and I'm 24/7 on Slack)\n"
+	Feedback is greatly welcome! (Campus/Slack)\n"
 printf "\n🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲\n"
 
 res=0
 printf "$PURPLE\n_______ERROR HANDLING_______\n$NC" #=======================================================
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(empty string)(Expected: Error)\n$NC"
-../push_swap "3" "1" "" 2> test.txt
+../push_swap "3" "1" ""
 testnbr=$(($testnbr + 1))
 
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(no input)(Expected: NOTHING)\n$NC"
@@ -64,12 +64,12 @@ printf "\n$BLUE====TEST $testnbr ====$YELLOW(bigger than max int)(Expected: Erro
 ../push_swap "21474836499" "54546" "3877"
 testnbr=$(($testnbr + 1))
 
-printf "\n$BLUE====TEST $testnbr ====$YELLOW(smaller than min int)(Expected: Error)\n$NC"
-../push_swap "-21474836499" "456" "6476"
+printf "\n$BLUE====TEST $testnbr ====$YELLOW(bigger than max long)(Expected: Error)\n$NC"
+../push_swap "429496729433" "54546" "3877"
 testnbr=$(($testnbr + 1))
 
-printf "\n$BLUE====TEST $testnbr ====$YELLOW(single string)(OPTIONAL)\n$NC"
-../push_swap "-214483 437 28817 487 92 456 6476" > /dev/null
+printf "\n$BLUE====TEST $testnbr ====$YELLOW(smaller than min int)(Expected: Error)\n$NC"
+../push_swap "-21474836499" "456" "6476"
 testnbr=$(($testnbr + 1))
 
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(already ordered)(Expected: NOTHING)\n$NC"
@@ -153,7 +153,7 @@ ok=0
 while [ $x -le 50 ]
 do
 	ARG=`seq -50 49 | sort -R | tr "\n" " "`;
-	printf "$BLUE====TEST $testnbr ====\n$NC"
+	printf "$BLUE==== TEST $testnbr =$NC"
 	movs=$(../push_swap ${ARG} | wc -l)
 	res=$(../push_swap ${ARG} | ./checker_Mac ${ARG})
 	if [ $movs -le 700 ]
@@ -192,7 +192,7 @@ ok=0
 while [ $x -le 30 ]
 do
   	ARG=`seq -100 399 | sort -R | tr "\n" " "`;
-	printf "$BLUE====TEST $testnbr ====\n$NC"
+	printf "$BLUE==== TEST $testnbr =$NC"
 	movs=$(../push_swap ${ARG} | wc -l)
 	res=$(../push_swap ${ARG} | ./checker_Mac ${ARG})
 	if [ $movs -le 5500 ]
