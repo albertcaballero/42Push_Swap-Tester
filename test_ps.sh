@@ -15,65 +15,182 @@ printf "$PINK\nIf there's any issue or something to improve, pls tell me!! :)\n\
 printf "\n🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲\n"
 
 res=0
+err=0
 printf "$PURPLE\n_______ERROR HANDLING_______\n$NC" #=======================================================
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(empty string)(Expected: Error)\n$NC"
-../push_swap "3" "1" ""
+../push_swap "3" "1" "" > /dev/null 2> err_check.txt
+err=$(cat err_check.txt | wc -l)
+if [ $err -eq 1 ]
+	then
+		printf "$GREEN OK"
+	else
+		printf "$RED KO"
+fi
 testnbr=$(($testnbr + 1))
 
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(no input)(Expected: NOTHING)\n$NC"
-../push_swap
+../push_swap > /dev/null 2> err_check.txt
+err=$(cat err_check.txt | wc -l)
+if [ $err -eq 0 ]
+	then
+		printf "$GREEN OK"
+	else
+		printf "$RED KO"
+fi
 testnbr=$(($testnbr + 1))
 
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(spaces)(Expected: Error)\n$NC"
-../push_swap "     "
-testnbr=$(($testnbr + 1))
-
-printf "\n$BLUE====TEST $testnbr ====$YELLOW(checking stderr)(Expected: NOTHING)\n$NC"
-../push_swap "" 2>/dev/null > out
+../push_swap "     " > /dev/null 2> err_check.txt
+err=$(cat err_check.txt | wc -l)
+if [ $err -eq 1 ]
+	then
+		printf "$GREEN OK"
+	else
+		printf "$RED KO"
+fi
 testnbr=$(($testnbr + 1))
 
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(letters btwn numbers)(Expected: Error)\n$NC"
-../push_swap "3a3" "2345" "324j455" "78"
+../push_swap "3a3" "2345" "324j455" "78" > /dev/null 2> err_check.txt
+err=$(cat err_check.txt | wc -l)
+if [ $err -eq 1 ]
+	then
+		printf "$GREEN OK"
+	else
+		printf "$RED KO"
+fi
 testnbr=$(($testnbr + 1))
 
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(only 1 number)(Expected: NOTHING)\n$NC"
-../push_swap "92"
+../push_swap "92" > err_check.txt
+err=$(cat err_check.txt | wc -l)
+if [ $err -eq 0 ]
+	then
+		printf "$GREEN OK"
+	else
+		printf "$RED KO"
+fi
 testnbr=$(($testnbr + 1))
 
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(repeated numbers)(Expected: Error)\n$NC"
-../push_swap "92" "42" "67" "87" "92" "727"
+../push_swap "92" "42" "67" "87" "92" "727" > /dev/null 2> err_check.txt
+err=$(cat err_check.txt | wc -l)
+if [ $err -eq 1 ]
+	then
+		printf "$GREEN OK"
+	else
+		printf "$RED KO"
+fi
 testnbr=$(($testnbr + 1))
 
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(repeated with leading zeroes)(Expected: Error)\n$NC"
-../push_swap "92" "42" "67" "87" "00092" "727"
+../push_swap "92" "42" "67" "87" "00092" "727" > /dev/null 2> err_check.txt
+err=$(cat err_check.txt | wc -l)
+if [ $err -eq 1 ]
+	then
+		printf "$GREEN OK"
+	else
+		printf "$RED KO"
+fi
 testnbr=$(($testnbr + 1))
 
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(repeated with signs)(Expected: Error)\n$NC"
-../push_swap "92" "42" "67" "87" "+92" "727"
+../push_swap "92" "42" "67" "87" "+92" "727" > /dev/null 2> err_check.txt
+err=$(cat err_check.txt | wc -l)
+if [ $err -eq 1 ]
+	then
+		printf "$GREEN OK"
+	else
+		printf "$RED KO"
+fi
 testnbr=$(($testnbr + 1))
 
-printf "\n$BLUE====TEST $testnbr ====$YELLOW(use of signs)(Expected: NOTHING)\n$NC"
-../push_swap "92" "42" "+67" "87" "-727" > /dev/null
+printf "\n$BLUE====TEST $testnbr ====$YELLOW(use of signs)(Expected: Normal)\n$NC"
+../push_swap "92" "42" "+67" "87" "-727" > /dev/null 2> err_check.txt
+err=$(cat err_check.txt | wc -l)
+if [ $err -eq 0 ]
+	then
+		printf "$GREEN OK"
+	else
+		printf "$RED KO"
+fi
 testnbr=$(($testnbr + 1))
 
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(double signs)(Expected: Error)\n$NC"
-../push_swap "92" "42" "+67" "--727"
+../push_swap "92" "42" "+67" "--727" > /dev/null 2> err_check.txt
+err=$(cat err_check.txt | wc -l)
+if [ $err -eq 1 ]
+	then
+		printf "$GREEN OK"
+	else
+		printf "$RED KO"
+fi
 testnbr=$(($testnbr + 1))
 
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(bigger than max int)(Expected: Error)\n$NC"
-../push_swap "21474836499" "54546" "3877"
+../push_swap "21474836499" "54546" "3877" > /dev/null 2> err_check.txt
+err=$(cat err_check.txt | wc -l)
+if [ $err -eq 1 ]
+	then
+		printf "$GREEN OK"
+	else
+		printf "$RED KO"
+fi
 testnbr=$(($testnbr + 1))
 
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(bigger than max long)(Expected: Error)\n$NC"
-../push_swap "429496729433" "54546" "3877"
+../push_swap "429496729433" "54546" "3877" > /dev/null 2> err_check.txt
+err=$(cat err_check.txt | wc -l)
+if [ $err -eq 1 ]
+	then
+		printf "$GREEN OK"
+	else
+		printf "$RED KO"
+fi
 testnbr=$(($testnbr + 1))
 
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(smaller than min int)(Expected: Error)\n$NC"
-../push_swap "-21474836499" "456" "6476"
+../push_swap "-21474836499" "456" "6476" > /dev/null 2> err_check.txt
+err=$(cat err_check.txt | wc -l)
+if [ $err -eq 1 ]
+	then
+		printf "$GREEN OK"
+	else
+		printf "$RED KO"
+fi
 testnbr=$(($testnbr + 1))
 
-printf "\n$BLUE====TEST $testnbr ====$YELLOW(already ordered)(Expected: NOTHING)\n$NC"
-../push_swap "1" "4" "66" "88"
+printf "\n$BLUE====TEST $testnbr ====$YELLOW(already ordered 4)(Expected: NOTHING)\n$NC"
+../push_swap "1" "4" "66" "88" > err_check.txt
+err=$(cat err_check.txt | wc -l)
+if [ $err -eq 0 ]
+	then
+		printf "$GREEN OK"
+	else
+		printf "$RED KO"
+fi
+testnbr=$(($testnbr + 1))
+
+printf "\n$BLUE====TEST $testnbr ====$YELLOW(already ordered 2)(Expected: NOTHING)\n$NC"
+../push_swap "1" "4" > err_check.txt
+err=$(cat err_check.txt | wc -l)
+if [ $err -eq 0 ]
+	then
+		printf "$GREEN OK"
+	else
+		printf "$RED KO"
+fi
+testnbr=$(($testnbr + 1))
+
+printf "\n$BLUE====TEST $testnbr ====$YELLOW(already ordered 7)(Expected: NOTHING)\n$NC"
+../push_swap "1" "4" "7" "8" "10" "100" "10000" > err_check.txt
+err=$(cat err_check.txt | wc -l)
+if [ $err -eq 0 ]
+	then
+		printf "$GREEN OK"
+	else
+		printf "$RED KO"
+fi
 
 printf "$PURPLE\n_______3 NUMBERS_______$YELLOW(Expected MAX: 3, OK)\n" #======================
 testnbr=1
@@ -150,6 +267,7 @@ movs=0
 res="OK"
 perf=0
 ok=0
+avg=0
 while [ $x -le 50 ]
 do
 	ARG=`seq -50 49 | sort -R | tr "\n" " "`;
@@ -176,10 +294,12 @@ do
 	fi
 	testnbr=$(($testnbr + 1))
 	x=$(( $x + 1 ))
+	avg=$(( $avg + $movs ))
 done
 
 x=$(( $x - 1 ))
-printf "$PINK\nGood tests (order): $ok/$x\nPerfect tests (movements 5/5): $perf/$x\n"
+avg=$(( $avg / $x ))
+printf "$PINK\nGood tests (order): $ok/$x\nPerfect tests (movements 5/5): $perf/$x\nAverage movements: $avg\n"
 
 printf "$PURPLE\n_______500 NUMBERS_______$YELLOW(Max: 11500, Perfect: 5500)\n" #=======================================================
 testnbr=1
@@ -189,6 +309,7 @@ movs=0
 res="OK"
 perf=0
 ok=0
+avg=0
 while [ $x -le 50 ]
 do
   	ARG=`seq -100 399 | sort -R | tr "\n" " "`;
@@ -215,10 +336,13 @@ do
 	fi
 	testnbr=$(($testnbr + 1))
 	x=$(( $x + 1 ))
+	avg=$(( $avg + $movs ))
 done
 
 x=$(( $x - 1 ))
-printf "$PINK\nGood tests (order): $ok/$x\nPerfect tests(movement 5/5): $perf/$x\n"
+avg=$(( $avg / $x ))
+printf "$PINK\nGood tests (order): $ok/$x\nPerfect tests(movement 5/5): $perf/$x\nAverage movements: $avg\n"
+rm err_check.txt
 
 printf "$NC\n🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲\n"
 printf "\n\t$GREEN 🌟========TESTS COMPLETED, GOOD LUCK!========🌟\n$NC"
