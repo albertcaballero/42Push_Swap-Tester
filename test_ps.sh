@@ -7,6 +7,7 @@ PINK="\033[38;5;219m"
 NC="\033[0m"
 
 chmod 777 checker_Mac
+make -C ..
 testnbr=1
 printf "\n🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲🔳🔲\n"
 printf "$GREEN\n\t🌟=======ALCABALL PUSHSWAP TESTER========🌟\n$NC"
@@ -40,7 +41,7 @@ fi
 testnbr=$(($testnbr + 1))
 
 printf "\n$BLUE====TEST $testnbr ====$YELLOW(spaces)(Expected: Error)\n$NC"
-../push_swap "     " > /dev/null 2> err_check.txt
+../push_swap "4" "6" "     " > /dev/null 2> err_check.txt
 err=$(cat err_check.txt | wc -l)
 if [ $err -eq 1 ]
 	then
